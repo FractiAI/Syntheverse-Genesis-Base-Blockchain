@@ -38,22 +38,51 @@ function formatTokens(wei: bigint): string {
   return fracPart ? `${grouped}.${fracPart}` : grouped;
 }
 
+async function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function toReceipt(name: string, address: string, deployTxHash: string) {
   const provider = ethers.provider;
-  const tx = await provider.getTransaction(deployTxHash);
-  if (!tx?.blockNumber) {
-    throw new Error(`Deployment tx not mined yet for ${name}: ${deployTxHash}`);
+  
+  // Wait for transaction receipt to ensure it's confirmed
+  console.log(`  Waiting for ${name} deployment confirmation...`);
+  const txReceipt = await provider.waitForTransaction(deployTxHash, 1, 30000); // 1 confirmation, 30s timeout
+  if (!txReceipt || !txReceipt.blockNumber) {
+    throw new Error(`Deployment tx not confirmed for ${name}: ${deployTxHash}`);
   }
-  const block = await provider.getBlock(tx.blockNumber);
+  
+  const blockNumber = txReceipt.blockNumber;
+  
+  // Retry logic for fetching block (RPC nodes sometimes need time to index)
+  let block = null;
+  const maxRetries = 5;
+  const retryDelay = 1000; // Start with 1 second
+  
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      block = await provider.getBlock(blockNumber);
+      if (block) break;
+    } catch (error) {
+      if (attempt < maxRetries) {
+        const delay = retryDelay * attempt; // Exponential backoff: 1s, 2s, 3s, 4s, 5s
+        console.log(`  Block not indexed yet, retrying in ${delay}ms... (attempt ${attempt}/${maxRetries})`);
+        await sleep(delay);
+      } else {
+        throw new Error(`Could not fetch block ${blockNumber} for ${name} after ${maxRetries} attempts`);
+      }
+    }
+  }
+  
   if (!block) {
-    throw new Error(`Could not fetch block ${tx.blockNumber} for ${name}`);
+    throw new Error(`Could not fetch block ${blockNumber} for ${name}`);
   }
 
   const receipt: DeployedContractReceipt = {
     name,
     address,
     deployTxHash,
-    blockNumber: tx.blockNumber,
+    blockNumber: blockNumber,
     blockTimestamp: Number(block.timestamp),
   };
   return receipt;

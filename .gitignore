@@ -1,12 +1,45 @@
-node_modules
-cache
-artifacts
-typechain-types
-coverage
-coverage.json
-dist
-.DS_Store
+# Dependencies
+node_modules/
+
+# Hardhat files
+cache/
+artifacts/
+typechain-types/
+
+# Environment variables
 .env
+.env.local
+.env.*.local
+
+# Coverage
+coverage/
+coverage.json
+
+# Build outputs
+dist/
+build/
+
+# IDE
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Deployment artifacts (keep structure, ignore contents)
 deployments/*.json
+!deployments/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
 
 
+.env.bak

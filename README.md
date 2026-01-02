@@ -87,6 +87,47 @@ event Note(address indexed actor, string note);
 
 ## 🚀 Deployment Status
 
+### ✅ Base Mainnet (Deployed)
+
+**Network**: Base Mainnet  
+**Chain ID**: 8453  
+**Deployment Date**: January 2, 2026  
+**Status**: ✅ **SUCCESSFULLY DEPLOYED**
+
+**Reports**:
+- **[Deployment Report](docs/DEPLOYMENT_REPORT_BASE_MAINNET.md)** - Complete deployment details and transaction information
+- **[Post-Deployment Report](docs/POST_DEPLOYMENT_REPORT_BASE_MAINNET.md)** - Comprehensive post-deployment verification, analysis, and next steps
+
+#### Contract Addresses
+
+| Contract | Address | Explorer |
+|----------|---------|----------|
+| **SyntheverseGenesisSYNTH90T** | [`0xAC9fa48Ca1D60e5274d14c7CEd6B3F4C1ADd1Aa3`](https://basescan.org/address/0xAC9fa48Ca1D60e5274d14c7CEd6B3F4C1ADd1Aa3) | [View on BaseScan](https://basescan.org/address/0xAC9fa48Ca1D60e5274d14c7CEd6B3F4C1ADd1Aa3) |
+| **SyntheverseGenesisLensKernel** | [`0xD9ABf9B19B4812A2fd06c5E8986B84040505B9D8`](https://basescan.org/address/0xD9ABf9B19B4812A2fd06c5E8986B84040505B9D8) | [View on BaseScan](https://basescan.org/address/0xD9ABf9B19B4812A2fd06c5E8986B84040505B9D8) |
+
+#### Deployment Details
+
+**SyntheverseGenesisSYNTH90T**:
+- **Transaction**: [`0x2feb4ee91670fdff2c2ba3eace87c0ca93e81de003a8195d695b4d96fa88d314`](https://basescan.org/tx/0x2feb4ee91670fdff2c2ba3eace87c0ca93e81de003a8195d695b4d96fa88d314)
+- **Block**: 40,294,754
+- **Gas Used**: 682,309
+- **Token Name**: "Syntheverse SYNTH 90T MOTHERLODE BLOCKMINE"
+- **Symbol**: SYNTH
+- **Total Supply**: 90,000,000,000,000 SYNTH
+- **Decimals**: 18
+- **Motherlode Vault**: `0x3563388d0e1c2d66a004e5e57717dc6d7e568be3`
+
+**SyntheverseGenesisLensKernel**:
+- **Transaction**: [`0x5a610ceef16e607734ec651797aefdec3143a26b25d769e07832c8ca1686fc5e`](https://basescan.org/tx/0x5a610ceef16e607734ec651797aefdec3143a26b25d769e07832c8ca1686fc5e)
+- **Block**: 40,294,815
+- **Gas Used**: 207,278
+
+**Deployer**: `0x3563388d0E1c2D66A004E5E57717dc6D7e568BE3`  
+**Total Gas Used**: 889,587  
+**Total Cost**: ~0.0002-0.0003 ETH
+
+**Pre-Deployment Report**: See [`docs/FINAL_PRE_DEPLOYMENT_REPORT_BASE_MAINNET.md`](docs/FINAL_PRE_DEPLOYMENT_REPORT_BASE_MAINNET.md) for comprehensive pre-deployment review.
+
 ### ✅ Base Sepolia Testnet (Deployed)
 
 **Network**: Base Sepolia  
@@ -137,13 +178,6 @@ event Note(address indexed actor, string note);
 - ✅ Both contracts immutable (no upgradeability)
 
 📄 **Full Deployment Report**: See [`docs/DEPLOYMENT_REPORT_BASE_SEPOLIA.md`](docs/DEPLOYMENT_REPORT_BASE_SEPOLIA.md) for complete details.
-
-### ⏳ Base Mainnet
-
-**Status**: Ready for deployment  
-**Network**: Base Mainnet (Chain ID: 8453)
-
-See [Deployment Guide](docs/DEPLOYMENT_GUIDE.md) for mainnet deployment instructions.
 
 ## 🚀 Quick Start
 
@@ -236,7 +270,18 @@ npx hardhat verify --network baseSepolia <KERNEL_ADDRESS>
 
 Comprehensive documentation is available in the [`docs/`](docs/) directory:
 
-- **[Deployment Report](docs/DEPLOYMENT_REPORT_BASE_SEPOLIA.md)** - Complete Base Sepolia deployment details and verification
+### Base Mainnet Deployment
+
+- **[Post-Deployment Report (Base Mainnet)](docs/POST_DEPLOYMENT_REPORT_BASE_MAINNET.md)** - ✅ **NEW** - Comprehensive post-deployment verification, analysis, security checks, and next steps
+- **[Deployment Report (Base Mainnet)](docs/DEPLOYMENT_REPORT_BASE_MAINNET.md)** - Complete Base Mainnet deployment details and transaction information
+- **[Pre-Deployment Report (Base Mainnet)](docs/FINAL_PRE_DEPLOYMENT_REPORT_BASE_MAINNET.md)** - ✅ **REVIEWED AND APPROVED** - Complete Base mainnet deployment specifications, configuration, and review checklist
+
+### Base Sepolia Testnet
+
+- **[Deployment Report (Base Sepolia)](docs/DEPLOYMENT_REPORT_BASE_SEPOLIA.md)** - Complete Base Sepolia deployment details and verification
+
+### Guides and Reviews
+
 - **[Deployment Guide](docs/DEPLOYMENT_GUIDE.md)** - Step-by-step deployment instructions
 - **[Security Review](docs/DEPLOYMENT_REVIEW.md)** - Comprehensive security analysis and code review
 - **[Review Summary](docs/REVIEW_SUMMARY.md)** - Quick reference security review summary

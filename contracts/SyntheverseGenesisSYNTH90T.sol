@@ -59,11 +59,28 @@ contract SyntheverseGenesisSYNTH90T is ERC20 {
     uint256 public constant TOTAL_SUPPLY = 90_000_000_000_000 ether;
 
     /// @notice Metallic makeup breakdown (quality dimensions, not separate token types).
+    /// @dev Gold: 45T SYNTH (50% of total) - Scientific contributions
+    ///      Silver: 22.5T SYNTH (25% of total) - Technological contributions
+    ///      Copper: 22.5T SYNTH (25% of total) - Alignment contributions
     uint256 public constant GOLD = 45_000_000_000_000 ether;
     uint256 public constant SILVER = 22_500_000_000_000 ether;
     uint256 public constant COPPER = 22_500_000_000_000 ether;
 
+    /// @notice Symbol identifiers for metallic dimensions (for reference/documentation).
+    /// @dev These symbols represent the semantic labels for the three quality dimensions.
+    ///      Gold: "SYNTHG" - Scientific contributions (50% = 45T)
+    ///      Silver: "SYNTHS" - Technological contributions (25% = 22.5T)
+    ///      Copper: "SYNTHC" - Alignment contributions (25% = 22.5T)
+    string public constant GOLD_SYMBOL = "SYNTHG";
+    string public constant SILVER_SYMBOL = "SYNTHS";
+    string public constant COPPER_SYMBOL = "SYNTHC";
+
     /// @notice Emitted once at deployment to record immutable genesis allocation semantics.
+    /// @param vault The Motherlode Vault address receiving all tokens
+    /// @param total Total supply: 90,000,000,000,000 SYNTH
+    /// @param gold Gold allocation: 45,000,000,000,000 SYNTH (50%, symbol: "SYNTHG")
+    /// @param silver Silver allocation: 22,500,000,000,000 SYNTH (25%, symbol: "SYNTHS")
+    /// @param copper Copper allocation: 22,500,000,000,000 SYNTH (25%, symbol: "SYNTHC")
     event MotherlodeMinted(
         address indexed vault,
         uint256 total,
@@ -72,7 +89,7 @@ contract SyntheverseGenesisSYNTH90T is ERC20 {
         uint256 copper
     );
 
-    constructor(address motherlodeVault) ERC20("Syntheverse Genesis SYNTH 90T", "SYNTH") {
+    constructor(address motherlodeVault) ERC20("Syntheverse SYNTH 90T MOTHERLODE BLOCKMINE", "SYNTH") {
         require(motherlodeVault != address(0), "VAULT_ZERO");
         MOTHERLODE_VAULT = motherlodeVault;
 
